@@ -3129,6 +3129,7 @@
                                           class="elementor-form"
                                           method="post"
                                           name="New Form"
+                                          id="contact-form"
                                         >
                                           <input
                                             type="hidden"
@@ -3159,7 +3160,7 @@
                                               <input
                                                 size="1"
                                                 type="text"
-                                                name="form_fields[name]"
+                                                name="name"
                                                 id="form-field-name"
                                                 class="elementor-field elementor-size-sm elementor-field-textual"
                                                 placeholder="Name"
@@ -3171,10 +3172,10 @@
                                               <input
                                                 size="1"
                                                 type="email"
-                                                name="form_fields[email]"
+                                                name="email"
                                                 id="form-field-email"
                                                 class="elementor-field elementor-size-sm elementor-field-textual"
-                                                placeholder="Email"
+                                                placeholder="Emaill"
                                                 required="required"
                                               />
                                             </div>
@@ -3184,7 +3185,7 @@
                                               <input
                                                 size="1"
                                                 type="text"
-                                                name="form_fields[field_93bc8cc]"
+                                                name="company_name"
                                                 id="form-field-field_93bc8cc"
                                                 class="elementor-field elementor-size-sm elementor-field-textual"
                                                 placeholder="Company name"
@@ -3196,7 +3197,7 @@
                                               <input
                                                 size="1"
                                                 type="tel"
-                                                name="form_fields[field_597bd0b]"
+                                                name="phone_number"
                                                 id="form-field-field_597bd0b"
                                                 class="elementor-field elementor-size-sm elementor-field-textual"
                                                 placeholder="Phone number"
@@ -3209,7 +3210,7 @@
                                             >
                                               <textarea
                                                 class="elementor-field-textual elementor-field elementor-size-sm"
-                                                name="form_fields[message]"
+                                                name="message"
                                                 id="form-field-message"
                                                 rows="4"
                                                 placeholder="What can we help you with?"
@@ -3221,7 +3222,7 @@
                                               <button
                                                 class="elementor-button elementor-size-sm"
                                                 type="submit"
-                                                onclick="alert('under development')"
+                                                
                                               >
                                                 <span
                                                   class="elementor-button-content-wrapper"
@@ -4667,5 +4668,23 @@
       src="./Contact – Gembotics_files/vamtam-elementor-frontend.min.js"
       id="vamtam-elementor-frontend-js"
     ></script>
+    <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+    <script>
+      (function(){
+        emailjs.init("jWsPy4MJluY_yXdjG"); // Replace with your public key
+      })();
+    </script>
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+    
+        emailjs.sendForm('service_zgxxtgk', 'template_ptp70b3', this)
+          .then(function() {
+            alert('Message sent successfully!');
+          }, function(error) {
+            alert('Failed to send message: ' + JSON.stringify(error));
+          });
+      });
+    </script>
   </body>
 </html>
